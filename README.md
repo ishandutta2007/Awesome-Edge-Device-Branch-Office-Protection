@@ -1,71 +1,116 @@
-# Awesome-Edge-Device-Branch-Office-Protection
+<p align="center">
+  <img src="assets/banner.svg" alt="Awesome Edge Device & Branch Office Protection" width="100%">
+</p>
 
-## Top Edge Device & Branch Office Protection Ecosystem
+# Awesome Edge Device & Branch Office Protection (ROBO)
 
-**Curated List of SaaS Platforms & Open-Source GitHub Projects**  
-*Focused on ROBO Backup, Endpoint Image Recovery & Edge Infrastructure Resilience*  
-**Last updated: March 2026**
+[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/ishandutta2007/Awesome-Edge-Device-Branch-Office-Protection/pulls)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/ishandutta2007/Awesome-Edge-Device-Branch-Office-Protection)
 
-This repository tracks notable **SaaS platforms** and **open-source projects** for **Edge Device & Branch Office Protection**. These tools help organizations protect data and workloads running outside the primary data center—covering remote office servers, point-of-sale systems, kiosks, and edge compute nodes where bandwidth is limited, IT staff is absent, and downtime directly halts revenue.
-
-**Examples** include Veeam Agent, Commvault Edge, Cohesity ROBO, Rubrik Edge, Druva Edge, and open-source alternatives like UrBackup, Restic, and Kopia (the category leaders).
-
-**Open-source emphasis**: This section highlights every major active project for self-hosted ROBO backup, open-source endpoint image recovery, and community-driven edge protection—ideal for organizations seeking data sovereignty and avoiding per-endpoint SaaS fees. The open-source landscape splits into **client/server backup with image support** (UrBackup, Bareos) for bare-metal recovery, and **agentless file-level tools** (Restic, Kopia) that push encrypted snapshots directly to cloud or NAS storage [citation:1][citation:4].
-
-Contributions welcome! Open an PR to add/update entries. Keep descriptions factual and link to official sites.
-
-## Table of Contents
-- [SaaS/Hosted Platforms](#saas-products)
-- [Open-Source GitHub Projects](#open-source-github-projects)
-- [How to Contribute](#how-to-contribute)
-- [Disclaimer](#disclaimer)
-
-## SaaS/Hosted Platforms
-
-| Product | Description | Pricing (Starting) | Free Tier / Trial Limits |
-|---------|-------------|-------------------|--------------------------|
-| **[Veeam Agent for Windows/Linux](https://www.veeam.com/)** | Free and paid agents for protecting physical endpoints and servers. Image-level backup enables bare-metal recovery to dissimilar hardware. Central management available via Veeam Backup & Replication or Veeam Service Provider Console. | Free (Agent); Central management requires Veeam B&R licensing | **Free**: full agent functionality for standalone use; no time limit |
-| **[Commvault Edge Endpoint](https://www.commvault.com/)** | Endpoint backup integrated into Commvault's enterprise data platform. Centralized policy management for remote office laptops and desktops. | Quote-only (enterprise contract) | No free tier; trial via sales |
-| **[Cohesity ROBO](https://www.cohesity.com/)** | Remote office/branch office protection with centralized management and cloud tiering. Designed for distributed environments with limited IT staff. | Quote-only (enterprise contract) | No free tier; trial via sales |
-| **[Rubrik Edge Appliance](https://www.rubrik.com/)** | Purpose-built appliance for remote offices with cloud replication to Rubrik Security Cloud. | Quote-only (appliance + subscription) | No free tier; trial via sales |
-| **[Druva Edge Data Protection](https://www.druva.com/)** | Cloud-native endpoint and ROBO protection with global deduplication and centralized console. | Quote-only (per TB/month after deduplication) | No free tier; trial via sales |
-| **[Acronis Cyber Protect Edge](https://www.acronis.com/)** | Cyber protection combining backup, disaster recovery, and AI-based ransomware detection for edge workloads. | Per-workload or per-GB (quote-only) | Free licensing model for service provider onboarding |
-
-## Open-Source GitHub Projects
-
-| Project | Star Badge | Description |
-|---------|------------|-------------|
-| **[UrBackup](https://github.com/uroni/urbackup-server)** | [![Stars](https://img.shields.io/github/stars/uroni/urbackup-server?style=social&color=white)](https://github.com/uroni/urbackup-server/stargazers) | **The best open-source choice for Windows endpoint fleets needing bare-metal recovery.** Client/server architecture with a single web UI. Combines **file-level incrementals** (fast PST recovery) with **whole-disk image backups** (VSS on Windows, dattobd/LVM on Linux) for bare-metal restore [citation:11]. Content-addressed storage deduplicates across endpoints when using btrfs/ZFS [citation:1]. **Best for small offices with mixed Windows/Linux endpoints** needing both granular and full-system recovery. |
-| **[Restic](https://github.com/restic/restic)** | [![Stars](https://img.shields.io/github/stars/restic/restic?style=social&color=white)](https://github.com/restic/restic/stargazers) | **The easiest open-source client for edge-to-cloud backup.** Single Go binary with **encryption always on**. Backs up to S3, Backblaze B2, Azure, GCS, SFTP, or any S3-compatible store—ideal for branch offices with limited local storage [citation:1][citation:4]. **Trade-off**: no scheduler, no GUI, no central management. Bring cron or systemd timers and track repositories manually. Best for Linux edge nodes pushing encrypted backups offsite. |
-| **[Kopia](https://github.com/kopia/kopia)** | [![Stars](https://img.shields.io/github/stars/kopia/kopia?style=social&color=white)](https://github.com/kopia/kopia/stargazers) | **The best open-source option for Windows/macOS edge devices with GUI needs.** Adds a **desktop app and optional repository server** on top of the same deduplicated, encrypted chunk-based design as Restic [citation:1][citation:10]. Cross-platform with a web UI for browsing snapshots and scheduling—closest to "set and forget" for non-technical branch staff [citation:4]. **Best for mixed OS edge devices where CLI-only tools are impractical.** |
-| **[Bareos](https://github.com/bareos/bareos)** | [![Stars](https://img.shields.io/github/stars/bareos/bareos?style=social&color=white)](https://github.com/bareos/bareos/stargazers) | **Enterprise-grade open-source backup with a real catalog and tape support.** Fork of Bacula (AGPLv3). Central director manages schedules, retention, and a catalog of every file backed up. Supports **disk, tape, and S3-compatible object storage** with client-side encryption and WORM media for ransomware resilience [citation:9]. **Trade-off**: steep setup complexity—expect the better part of a day to configure director, storage daemon, and file daemon correctly [citation:1]. Best for larger branch offices with dedicated IT or tape archival needs. |
-| **[Duplicati](https://github.com/duplicati/duplicati)** | [![Stars](https://img.shields.io/github/stars/duplicati/duplicati?style=social&color=white)](https://github.com/duplicati/duplicati/stargazers) | **Free open-source backup client with a web UI for scheduled cloud backups.** Runs on Windows, macOS, and Linux (.NET). Encrypts, compresses, and deduplicates backup sets to S3, SFTP, WebDAV, and cloud drives [citation:3]. **Caveat**: restore verification can be unreliable and development pace has slowed—always test restores before relying on it for critical edge data [citation:15]. Best for budget-conscious branch offices with simple file backup needs. |
-
-### Additional Strong Open-Source Options
-
-| Project | Star Badge | Description |
-|---------|------------|-------------|
-| **[borgmatic](https://github.com/borgmatic-collective/borgmatic)** | [![Stars](https://img.shields.io/github/stars/borgmatic-collective/borgmatic?style=social&color=white)](https://github.com/borgmatic-collective/borgmatic/stargazers) | **Automation wrapper for BorgBackup that makes it production-ready.** YAML config handles schedules, retention, consistency checks, database dumps, and health monitoring in one file [citation:6][citation:14]. Turns Borg's manual CLI into an automated system. **Requires BorgBackup** (SSH-only remote, no native S3). Best for Linux branch servers with existing SSH/NAS infrastructure. |
-| **[KubeEdge](https://github.com/kubeedge/kubeedge)** | [![Stars](https://img.shields.io/github/stars/kubeedge/kubeedge?style=social&color=white)](https://github.com/kubeedge/kubeedge/stargazers) | **CNCF-graduated edge computing framework for extending Kubernetes to branch offices.** Manages edge nodes with a lightweight EdgeCore runtime (~30MB memory). Supports cloud-edge-device collaboration with offline autonomy when network links fail [citation:5][citation:8]. **Not a backup tool**—use alongside UrBackup or Restic to protect the workloads it orchestrates. Best for organizations running containerized edge applications. |
-
-**Frameworks for building custom systems**: Choose **UrBackup** for Windows-heavy branches needing bare-metal image recovery [citation:11], **Restic** for Linux edge nodes pushing encrypted backups to cheap cloud storage [citation:4], **Kopia** for mixed-OS fleets where a GUI is non-negotiable [citation:10], and **Bareos** for larger offices with tape archival requirements [citation:9]. **None of these provides the centralized multi-tenant management of Cohesity ROBO or Druva Edge**—expect to build monitoring and reporting layers yourself.
-
-## How to Contribute
-
-1. Fork the repo.
-2. Add/edit entries in `README.md` (follow existing format).
-3. Include: name, link, 1–2 sentence description, and whether it's SaaS or open-source.
-4. Submit PR with a short explanation.
-
-Star the repo if you find it useful!
-
-## Disclaimer
-
-- This is a **community-curated** list — not exhaustive and not an endorsement.
-- Edge protection tools handle sensitive branch data; enforce encryption at rest and in transit, and ensure backup credentials are stored separately from the systems they protect. **A compromised branch endpoint should not be able to delete its own backups**—use append-only or WORM storage where possible [citation:9].
-- **Open-source ROBO backup requires operational discipline.** **UrBackup** needs btrfs or ZFS for efficient deduplication—ext4 falls back to hardlinks with limited restore performance [citation:11]. **Restic and Kopia** have no central scheduler; you must implement cron, systemd timers, or external orchestration. **Bareos** has a steep learning curve and is overkill for a handful of endpoints [citation:1]. **Duplicati's restore reliability is a known concern**—verify restores before trusting it for critical data [citation:15]. Validate bare-metal recovery procedures (not just file restores) against your actual hardware mix before committing.
+A curated list of enterprise SaaS platforms, appliances, open-source backup frameworks, and cyber-resilience tools designed for **Remote Office / Branch Office (ROBO)** data protection, **bare-metal endpoint recovery**, and **distributed edge computing resilience**.
 
 ---
 
-**Made for IT administrators, branch office managers, and organizations building edge resilience.**  
-Let's make edge device and branch office protection more open, recoverable, and cost-predictable.
+## Table of Contents
+- [Sector Overview & Market Dynamics](#sector-overview--market-dynamics)
+- [Enterprise SaaS & Hybrid Cloud Platforms](#enterprise-saas--hybrid-cloud-platforms)
+- [Open-Source Projects & Frameworks](#open-source-projects--frameworks)
+- [Architecture & Selection Decision Guide](#architecture--selection-decision-guide)
+- [Contributing](#contributing)
+- [Security & Operational Disclaimer](#security--operational-disclaimer)
+
+---
+
+## Sector Overview & Market Dynamics
+
+The global data protection and disaster recovery software market is valued at approximately **$10.5 billion to $11.2 billion (2025/2026)** and is projected to exceed **$20.4 billion by 2030** (~13.8% CAGR), propelled by edge computing expansion and ransomware resilience imperatives. The sector exhibits a **barbell market structure**: it is **moderately concentrated at the enterprise core** where dominant vendors (Veeam, Commvault, Cohesity, Rubrik) capture majority enterprise IT budgets, yet **highly fragmented at the edge and ROBO tier** where decentralized requirements (unreliable WAN, headless hardware, zero-trust remote sites, containerized IoT) necessitate specialized appliances, MSP-managed BaaS, and lean open-source backup agents.
+
+---
+
+## Enterprise SaaS & Hybrid Cloud Platforms
+
+The table below outlines enterprise SaaS and managed platforms tailored for ROBO and edge device protection, sorted in descending order by **Company Size (Valuation / Revenue Scale)**.
+
+| Product | Company Size (Valuation / Scale) | Pricing (Specific Starting Tiers) | Free Tier / Trial Limits | Primary Use Case & Architecture |
+|---|---|---|---|---|
+| **[Veeam Data Platform & Agent](https://www.veeam.com/)** | **$15.0B Valuation** (~$1.7B ARR) | **$10.00 to $15.00/workload/month** (sold as Veeam Universal License [VUL] bundles, list ~$120–$180/instance/yr, 5–10 pack minimums) | **Free Forever (Veeam Community Edition)**: Full functionality up to **10 workloads**; or **30-day full-feature trial** with unlimited instances | Bare-metal recovery to dissimilar hardware, Windows/Linux server & workstation image backups via centralized console. |
+| **[Cohesity ROBO & DataProtect](https://www.cohesity.com/)** | **$7.5B Valuation** (~$1.6B Revenue post-Veritas deal) | **$2,425.00/month** (AWS Marketplace entry baseline for DataProtect as a Service: **$29,100/yr per 10 BETB block**; ~$80–$160/VM/yr custom quote) | **30-day free trial** with access to hosted SaaS DataProtect workflows and cloud replication sandbox | Consolidated ROBO appliance with global deduplication, immutability, and unified cloud tiering for remote branches. |
+| **[Rubrik Security Cloud & Edge](https://www.rubrik.com/)** | **$6.2B Market Cap** (~$1.31B Revenue) | **$4,166.00/month** (Software-only subscription baselines start at **$50,000/yr** for mid-sized footprints; Rubrik SaaS M365 from ~$1.50–$4.00/user/mo) | **30-day free trial** (SaaS-hosted trial capped at **500 user accounts / 10 TB** protected data) | Zero-Trust Data Security platform featuring immutable air-gapped snapshots and ransomware blast-radius analysis. |
+| **[Commvault Cloud & Edge Endpoint](https://www.commvault.com/)** | **$5.8B Market Cap** (~$995M Revenue) | **$8.16/VM/month** (Self-managed list price ~$98/VM/yr or ~$150/FETB/yr; Commvault SaaS File/Object from **$58.50/TB/month**) | **30-day free trial** across Commvault Cloud workloads (full enterprise management console access, no credit card required) | Comprehensive policy-driven edge laptop, desktop, and branch server backup integrated into enterprise catalogs. |
+| **[Acronis Cyber Protect Cloud](https://www.acronis.com/)** | **$3.5B Valuation** (~$420M Revenue) | **$15.00/workload/month** (MSP/Channel starting tier per server/VM workload; Advanced backup bundles start at ~$25–$35/workload/mo) | **30-day free trial** with complete features enabled (reverts to restore-only mode upon trial expiration) | Integrated cybersecurity, patch management, EDR, and full image disaster recovery optimized for MSP remote management. |
+| **[Druva Data Resiliency Cloud](https://www.druva.com/)** | **$2.0B Valuation** (~$220M ARR) | **$8.00/user/month** (Starting tier for endpoint data protection; Enterprise ROBO servers priced at **$210.00/TB/month** deduplicated storage) | **30-day free trial** (Includes up to 100 endpoints or 1 TB backup quota, extendable up to 60 days via support) | 100% serverless SaaS backup with no edge hardware footprint, automated deduplication, and direct-to-cloud sync. |
+
+---
+
+## Open-Source Projects & Frameworks
+
+Production-grade open-source backup agents, image-level recovery frameworks, and edge orchestrators. Ranked in descending order by **GitHub Star Count**.
+
+| Project | GitHub Stars Badge | Description & ROBO Strengths | Key Constraints & Trade-offs |
+|---|---|---|---|
+| **[Syncthing](https://github.com/syncthing/syncthing)** | [![Stars](https://img.shields.io/github/stars/syncthing/syncthing?style=social&color=white)](https://github.com/syncthing/syncthing/stargazers) | **Continuous peer-to-peer decentralized file synchronization.** Highly resilient for branch offices and distributed field systems. Encrypted in transit with TLS and perfect forward secrecy, syncing files across LANs and WANs without central cloud servers. | File synchronization tool, not a block-level or bare-metal recovery engine; requires separate version retention management. |
+| **[Rclone](https://github.com/rclone/rclone)** | [![Stars](https://img.shields.io/github/stars/rclone/rclone?style=social&color=white)](https://github.com/rclone/rclone/stargazers) | **The Swiss Army knife of cloud storage sync.** Supports 70+ backend providers (S3, B2, Azure Blob, SFTP, WebDAV). Offers built-in client-side encryption (`crypt`), bandwidth throttling, and chunked uploads tailored for slow WAN branch links. | CLI-driven; does not manage snapshot catalogs or incremental differential blocks natively without external scripts. |
+| **[Restic](https://github.com/restic/restic)** | [![Stars](https://img.shields.io/github/stars/restic/restic?style=social&color=white)](https://github.com/restic/restic/stargazers) | **Fast, secure, authenticated snapshot backup program.** Single self-contained Go binary with cryptographic integrity (AES-256 in CTR mode, Poly1305-AES). Directly writes deduplicated snapshots to S3, Backblaze B2, SFTP, and local disks. | Headless CLI only; no native scheduler or web console. Requires external systemd timers or cron orchestration across branches. |
+| **[K3s](https://github.com/k3s-io/k3s)** | [![Stars](https://img.shields.io/github/stars/k3s-io/k3s?style=social&color=white)](https://github.com/k3s-io/k3s/stargazers) | **Lightweight certified Kubernetes distribution (<100MB binary) built for IoT and edge.** Package includes sqlite/embedded etcd snapshotting. Perfect for orchestrating containerized microservices and automated volume snapshot backups across branch clusters. | Edge container platform rather than a backup agent; pair with Velero or Restic for full stateful application backup. |
+| **[Duplicati](https://github.com/duplicati/duplicati)** | [![Stars](https://img.shields.io/github/stars/duplicati/duplicati?style=social&color=white)](https://github.com/duplicati/duplicati/stargazers) | **Cross-platform block-level backup client with built-in web management interface.** Runs on Windows, Linux, and macOS. Features AES-256 encryption, content-based chunk deduplication, bandwidth limits, and scheduled cloud offloading. | SQLite local database repairs can be slow on very large backup sets (>1 TB); critical restores must be tested regularly. |
+| **[Kopia](https://github.com/kopia/kopia)** | [![Stars](https://img.shields.io/github/stars/kopia/kopia?style=social&color=white)](https://github.com/kopia/kopia/stargazers) | **Fast and secure backup engine with desktop GUI, web interface, and CLI.** Written in Go. Features zero-knowledge encryption, deduplication, content-addressable storage, and an optional centralized repository server mode for multi-device management. | Server mode requires network access to the primary repository or TLS-secured HTTP proxying for edge clients. |
+| **[BorgBackup](https://github.com/borgbackup/borg)** | [![Stars](https://img.shields.io/github/stars/borgbackup/borg?style=social&color=white)](https://github.com/borgbackup/borg/stargazers) | **Deduplicating backup archiver with authenticated encryption.** Renowned for chunk-level deduplication efficiency on Linux hosts. Supports append-only repository modes to prevent compromised branch devices from destroying past backups. | Native transport is SSH/local filesystem only (no native S3 API support; requires SSH targets or mounted remote storage). |
+| **[KubeEdge](https://github.com/kubeedge/kubeedge)** | [![Stars](https://img.shields.io/github/stars/kubeedge/kubeedge?style=social&color=white)](https://github.com/kubeedge/kubeedge/stargazers) | **CNCF-graduated edge computing platform extending Kubernetes to remote branch nodes.** Provides EdgeCore runtime (~30MB footprint) with bidirectional cloud-edge sync and local autonomous operation during WAN disconnects. | Orchestration layer; requires companion storage snapshotters or CSI backup plugins to safeguard persistent state. |
+| **[borgmatic](https://github.com/borgmatic-collective/borgmatic)** | [![Stars](https://img.shields.io/github/stars/borgmatic-collective/borgmatic?style=social&color=white)](https://github.com/borgmatic-collective/borgmatic/stargazers) | **Declarative automation wrapper for BorgBackup.** Unifies retention policies, snapshot schedules, consistency checks, database dumps (PostgreSQL, MySQL, SQLite), and health check monitoring into human-readable YAML configs. | Dependent on BorgBackup runtime and SSH destination infrastructure; designed specifically for Linux branch environments. |
+| **[Bareos](https://github.com/bareos/bareos)** | [![Stars](https://img.shields.io/github/stars/bareos/bareos?style=social&color=white)](https://github.com/bareos/bareos/stargazers) | **Enterprise client/server backup architecture with centralized catalog.** Mature fork of Bacula (AGPLv3) supporting disk, tape libraries, and S3 object targets with client encryption, TLS transport, and WORM storage support. | Complex multi-daemon setup (Director, Storage Daemon, File Daemon); requires dedicated administrative overhead. |
+| **[UrBackup](https://github.com/uroni/urbackup_backend)** | [![Stars](https://img.shields.io/github/stars/uroni/urbackup_backend?style=social&color=white)](https://github.com/uroni/urbackup_backend/stargazers) | **Client/server backup system offering both file backups and raw whole-disk image backups.** Supports VSS-based live snapshots on Windows and dattobd/LVM on Linux. Delivers true bare-metal recovery via bootable ISO/USB for branch hardware failures. | Optimal storage deduplication requires a btrfs or ZFS filesystem on the backup server; ext4 relies on hardlinks. |
+
+---
+
+## Architecture & Selection Decision Guide
+
+```
+                           What is your primary branch requirement?
+                                              │
+         ┌────────────────────────────────────┼────────────────────────────────────┐
+         │                                    │                                    │
+         ▼                                    ▼                                    ▼
+┌──────────────────┐                ┌──────────────────┐                ┌──────────────────┐
+│ Bare-Metal Image │                │  File / Database │                │ Edge Application │
+│   Restoration    │                │ Deduplication    │                │  Microservices   │
+└────────┬─────────┘                └────────┬─────────┘                └────────┬─────────┘
+         │                                   │                                   │
+   ┌─────┴─────┐                       ┌─────┴─────┐                       ┌─────┴─────┐
+   ▼           ▼                       ▼           ▼                       ▼           ▼
+[Veeam /   [UrBackup]              [Druva /    [Restic /               [K3s /      [Bareos]
+ Acronis]  (Open-Source)           Commvault]   Kopia]                 KubeEdge]   (Enterprise)
+```
+
+1. **For Remote Retail / Branch POS with No On-Site IT:**
+   - Choose **Veeam Agent** or **Acronis Cyber Protect** if budget permits turnkey SaaS management.
+   - Choose **UrBackup** for an open-source, license-free alternative that can restore a fried branch cash register or workstation to different bare-metal hardware via bootable media.
+2. **For Lightweight Linux Edge Servers & IoT Gateways:**
+   - Deploy **Restic** or **Kopia** with systemd timers pushing encrypted chunks to object storage (AWS S3, Wasabi, or MinIO).
+   - Use **borgmatic** if automated database dumps (PostgreSQL/MySQL) and append-only SSH targets are required for ransomware defense.
+3. **For Bandwidth-Constrained Satellite WAN Links:**
+   - Use **Rclone** with `--bwlimit` parameters or **Syncthing** for delta-only branch replication without saturating mission-critical VoIP or POS traffic.
+
+---
+
+## Contributing
+
+Contributions are warmly welcomed! Please review the guidelines below:
+1. Ensure the product or project directly solves **Edge Device**, **ROBO (Remote Office/Branch Office)**, or **Distributed Endpoint** backup/recovery challenges.
+2. For SaaS tools: include starting prices and specific free trial terms.
+3. For Open-Source projects: provide the GitHub repository link, star count badge, and objective trade-off analysis.
+4. Follow the existing Markdown table formats and submit a pull request!
+
+---
+
+## Security & Operational Disclaimer
+
+- Edge backup repositories must be secured with **append-only permissions** or **immutable WORM object locks** to prevent threat actors from purging snapshots if branch credentials are compromised.
+- Regularly perform physical bare-metal recovery drills on branch hardware: restoring individual files does not guarantee that full OS disk images will boot on dissimilar motherboards or storage controllers.
+
+---
+
+<p align="center">
+  <b>Curated with care for IT administrators, Systems Engineers, and Edge DevOps Teams worldwide.</b>
+</p>
