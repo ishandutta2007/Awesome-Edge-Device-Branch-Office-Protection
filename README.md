@@ -50,9 +50,9 @@ The table below outlines enterprise SaaS and managed platforms tailored for ROBO
 
 ## 🔓 Open-Source Projects & Frameworks
 
-Production-grade open-source backup agents, image-level recovery frameworks, and edge orchestrators. Ranked in descending order by **GitHub Star Count** ⭐.
+Production-grade open-source backup agents, image-level recovery frameworks, and edge orchestrators. Ranked in descending order by **GitHub Stars_Count** ⭐.
 
-| Project | GitHub Stars Badge | 🛠️ Description & ROBO Strengths | ⚠️ Key Constraints & Trade-offs |
+| Project | GitHub_Stars_Badge | 🛠️ Description & ROBO Strengths | ⚠️ Key Constraints & Trade-offs |
 |---|---|---|---|
 | **[Syncthing](https://github.com/syncthing/syncthing)** | [![Stars](https://img.shields.io/github/stars/syncthing/syncthing?style=social&color=white)](https://github.com/syncthing/syncthing/stargazers) | **Continuous peer-to-peer decentralized file synchronization.** Highly resilient for branch offices and distributed field systems. Encrypted in transit with TLS and perfect forward secrecy, syncing files across LANs and WANs without central cloud servers. | File synchronization tool, not a block-level or bare-metal recovery engine; requires separate version retention management. |
 | **[Rclone](https://github.com/rclone/rclone)** | [![Stars](https://img.shields.io/github/stars/rclone/rclone?style=social&color=white)](https://github.com/rclone/rclone/stargazers) | **The Swiss Army knife of cloud storage sync.** Supports 70+ backend providers (S3, B2, Azure Blob, SFTP, WebDAV). Offers built-in client-side encryption (`crypt`), bandwidth throttling, and chunked uploads tailored for slow WAN branch links. | CLI-driven; does not manage snapshot catalogs or incremental differential blocks natively without external scripts. |
@@ -103,7 +103,7 @@ Production-grade open-source backup agents, image-level recovery frameworks, and
 Contributions are warmly welcomed! 🌟 Please review the guidelines below:
 1. Ensure the product or project directly solves **Edge Device**, **ROBO (Remote Office/Branch Office)**, or **Distributed Endpoint** backup/recovery challenges.
 2. For SaaS tools: include starting prices and specific free trial terms.
-3. For Open-Source projects: provide the GitHub repository link, star count badge, and objective trade-off analysis.
+3. For Open-Source projects: provide the GitHub repository link, Stars_Count badge, and objective trade-off analysis.
 4. Follow the existing Markdown table formats and submit a pull request!
 
 ---
@@ -135,3 +135,12 @@ If you find this curated ecosystem helpful, please consider supporting the proje
 <p align="center">
   <b>Curated with care for IT administrators, Systems Engineers, and Edge DevOps Teams worldwide.</b>
 </p>
+
+## ⭐ Star History
+
+<a href="https://star-history.com/#ishandutta2007/Awesome-Edge-Device-Branch-Office-Protection&Timeline" align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/ishandutta2007_Awesome-Edge-Device-Branch-Office-Protection_growth.svg">
+    <img alt="Star History Chart" src="assets/ishandutta2007_Awesome-Edge-Device-Branch-Office-Protection_growth.svg">
+  </picture>
+</a>
